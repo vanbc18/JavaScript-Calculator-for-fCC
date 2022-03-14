@@ -1,0 +1,84 @@
+const App = () => {
+  
+  const initialState = "0";
+  const [exp, setExp] = React.useState("");
+  
+  const allClear = () => {
+    setExp(initialState);
+  };
+  
+  const append = (e) => {
+    if (exp === initialState) {
+      setExp(e);
+    } else {
+      setExp(exp.concat(e));
+    }
+  };
+  
+  const add = () => {
+    setExp(exp + "+");
+  };
+  
+  const subtract = () => {
+    setExp(exp + "-");
+  };
+  
+  const multiply = () => {
+    setExp(exp + "*");
+  };
+  
+  const divide = () => {
+    setExp(exp + "/");
+  };
+  
+  const calculate = () => {
+    const expRegEx = /(\+|\*|\/|-)?(\.|\-)?\d+/g;
+    const filteredExp = exp.match(expRegEx).join('');
+    setExp(eval(filteredExp).toString());
+  };
+  
+  const addDecimal = () => {
+    const opRegEx = /[+\-*/]/g;
+    const nums = exp.split(opRegEx);
+    if (nums[nums.length - 1].indexOf(".") === -1) {
+      setExp(exp + ".");
+    }
+  };
+  
+  return (
+    <div className="container calculator">
+      <span id="display"> { exp || initialState } </span>
+      <div className="pads">
+        <button id='clear' 
+                className="btn btn-danger" 
+                onClick={allClear}>AC
+        </button>
+        <button id='add' 
+                className="btn btn-warning" 
+                onClick={add}>+
+        </button>
+        <button id='subtract' 
+                className="btn btn-warning" 
+                onClick={subtract}>-
+        </button>
+        <button id='multiply' className="btn btn-warning" onClick={multiply}>x</button>
+        <button id='one' className="btn btn-default" onClick={() => append("1")}>1</button>
+        <button id='two' className="btn btn-default" onClick={() => append("2")}>2</button>
+        <button id='three' className="btn btn-default" onClick={() => append("3")}>3</button>
+        <button id='divide' className="btn btn-warning" onClick={divide}>&divide;</button>
+        <button id='four' className="btn btn-default" onClick={() => append("4")}>4</button>
+        <button id='five' className="btn btn-default" onClick={() => append("5")}>5</button>
+        <button id='six' className="btn btn-default" onClick={() => append("6")}>6</button>
+        <button id='decimal' className="btn btn-info" onClick={addDecimal}>.</button>
+        <button id='seven' className="btn btn-default" onClick={() => append("7")}>7</button>
+        <button id='eight' className="btn btn-default" onClick={() => append("8")}>8</button>
+        <button id='nine' className="btn btn-default" onClick={() => append("9")}>9</button>
+        <button id='zero' className="btn btn-default" onClick={() => append("0")}>0</button>
+        </div>
+        <button id='equals' className="btn btn-success btn-block" onClick={calculate}>=</button>
+        <footer id="footer">&copy; 2022 Van B-C.</footer>
+    </div>
+  )
+};
+
+ReactDOM.render(<App />, document.getElementById("App"));
