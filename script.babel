@@ -49,18 +49,9 @@ const App = () => {
     <div className="container calculator">
       <span id="display"> { exp || initialState } </span>
       <div className="pads">
-        <button id='clear' 
-                className="btn btn-danger" 
-                onClick={allClear}>AC
-        </button>
-        <button id='add' 
-                className="btn btn-warning" 
-                onClick={add}>+
-        </button>
-        <button id='subtract' 
-                className="btn btn-warning" 
-                onClick={subtract}>-
-        </button>
+        <button id='clear' className="btn btn-danger" onClick={allClear}>AC</button>
+        <button id='add' className="btn btn-warning" onClick={add}>+</button>
+        <button id='subtract' className="btn btn-warning" onClick={subtract}>-</button>
         <button id='multiply' className="btn btn-warning" onClick={multiply}>x</button>
         <button id='one' className="btn btn-default" onClick={() => append("1")}>1</button>
         <button id='two' className="btn btn-default" onClick={() => append("2")}>2</button>
@@ -74,9 +65,9 @@ const App = () => {
         <button id='eight' className="btn btn-default" onClick={() => append("8")}>8</button>
         <button id='nine' className="btn btn-default" onClick={() => append("9")}>9</button>
         <button id='zero' className="btn btn-default" onClick={() => append("0")}>0</button>
-        </div>
-        <button id='equals' className="btn btn-success btn-block" onClick={calculate}>=</button>
-        <footer id="footer">&copy; 2022 Van B-C.</footer>
+      </div>
+      <button id='equals' className="btn btn-success btn-block" onClick={calculate}>=</button>
+      <footer id="footer">&copy; 2022 Van B-C.</footer>
     </div>
   )
 };
